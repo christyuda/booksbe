@@ -11,6 +11,7 @@ const bookGoogleSchema = new mongoose.Schema({
   thumbnail: String,
   previewLink: String,
   categories: [String],
+  averageRating: String,
 });
 
 const BookGoogle = mongoose.model("BookGoogle", bookGoogleSchema);

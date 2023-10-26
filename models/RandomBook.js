@@ -12,6 +12,7 @@ const randomBookSchema = new mongoose.Schema({
   thumbnail: String,
   previewLink: String,
   categories: [String],
+  averageRating: String,
 });
 
 const RandomBook = mongoose.model("RandomBook", randomBookSchema);

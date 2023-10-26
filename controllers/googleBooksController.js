@@ -31,6 +31,7 @@ const getBooksFromGoogle = async (req, res) => {
         thumbnail: imageLinks.thumbnail || "",
         previewLink: volumeInfo.previewLink || "",
         categories: volumeInfo.categories || [],
+        averageRating: volumeInfo.averageRating || "0",
       };
     });
 

@@ -32,6 +32,7 @@ const getRandomBooks = async (req, res) => {
         thumbnail: imageLinks.thumbnail || "",
         previewLink: volumeInfo.previewLink || "",
         categories: volumeInfo.categories || [],
+        averageRating: volumeInfo.averageRating || "",
       };
     });
 
