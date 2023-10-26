@@ -8,15 +8,36 @@ const dotenv = require("dotenv");
 const bookRoutes = require("./routes/bookRoutes");
 const randomBooksRoutes = require("./routes/randomBooksRoutes");
 const googleBooksRoutes = require("./routes/apigoogleRoutes");
-
+const profileRoutes = require("./routes/profileRoutes");
+const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 
 const port = process.env.PORT || 3000;
 const mongoURI = process.env.MONGODB_URI;
+app.use(express.json());
 
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
+    // Status code 400: Bad Request jika JSON parsing gagal
+    res
+      .status(400)
+      .json({
+        error: "Invalid Json Pastikan mengirimkan body requestnya RAW ya",
+      });
+  } else {
+    next();
+  }
+});
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
+// Middlewares
+
+// Use the profile routes
+app.use("/api", profileRoutes);
+
+// Use the authentication routes
+app.use("/api", authRoutes);
 
 // Google Books API Routes
 app.use("/api", googleBooksRoutes);
