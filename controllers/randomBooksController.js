@@ -4,7 +4,7 @@ const RandomBook = require("../models/RandomBook");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
+// const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
 
 const getRandomBooks = async (req, res) => {
   try {
@@ -14,7 +14,7 @@ const getRandomBooks = async (req, res) => {
     );
 
     const response = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&key=${apiKey}`
+      `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}`
     );
 
     const bookData = response.data.items.map((item) => {
